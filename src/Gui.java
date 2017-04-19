@@ -1,5 +1,6 @@
 
 import javax.swing.UIManager;
+import javax.swing.border.Border;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -42,15 +43,24 @@ public class Gui extends javax.swing.JFrame {
         dashMenuLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         dashMenuLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/dash.png"))); // NOI18N
         dashMenuLabel.setToolTipText("");
+        dashMenuLabel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        dashMenuLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dashMenuLabelMouseClicked(evt);
+            }
+        });
 
         configMenuLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         configMenuLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/config.png"))); // NOI18N
+        configMenuLabel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         smtpMenuLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         smtpMenuLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/email.png"))); // NOI18N
+        smtpMenuLabel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         databaseMenuLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         databaseMenuLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/report.png"))); // NOI18N
+        databaseMenuLabel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -81,6 +91,16 @@ public class Gui extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void dashMenuLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashMenuLabelMouseClicked
+        if (!isDashMenuSelected) {
+            dashMenuLabel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+            isDashMenuSelected = false;
+        } else {
+            dashMenuLabel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+            isBorderRaised = true;
+        }
+    }//GEN-LAST:event_dashMenuLabelMouseClicked
 
     /**
      * @param args the command line arguments
@@ -123,6 +143,12 @@ public class Gui extends javax.swing.JFrame {
         });
     }
 
+    //my variables
+    boolean isDashMenuSelected = false;
+    boolean isConfigMenuSelected = false;
+    boolean isSmtpMenuSelected = false;
+    boolean isDatabaseMenuSelected = false;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bannerLabel;
     private javax.swing.JLabel configMenuLabel;
