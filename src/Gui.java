@@ -7,7 +7,6 @@ import javax.swing.border.Border;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author r00t
@@ -19,6 +18,7 @@ public class Gui extends javax.swing.JFrame {
      */
     public Gui() {
         initComponents();
+        controllingMenuButtonsClick = new ControllingMenuButtonsClick();
     }
 
     /**
@@ -35,6 +35,15 @@ public class Gui extends javax.swing.JFrame {
         configMenuLabel = new javax.swing.JLabel();
         smtpMenuLabel = new javax.swing.JLabel();
         databaseMenuLabel = new javax.swing.JLabel();
+        parentPanel = new javax.swing.JPanel();
+        dashPanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        configPanel = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        smtpPanel = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        databasePanel = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,54 +62,173 @@ public class Gui extends javax.swing.JFrame {
         configMenuLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         configMenuLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/config.png"))); // NOI18N
         configMenuLabel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        configMenuLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                configMenuLabelMouseClicked(evt);
+            }
+        });
 
         smtpMenuLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         smtpMenuLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/email.png"))); // NOI18N
         smtpMenuLabel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        smtpMenuLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                smtpMenuLabelMouseClicked(evt);
+            }
+        });
 
         databaseMenuLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         databaseMenuLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/report.png"))); // NOI18N
         databaseMenuLabel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        databaseMenuLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                databaseMenuLabelMouseClicked(evt);
+            }
+        });
+
+        parentPanel.setLayout(new java.awt.CardLayout());
+
+        jLabel1.setText("jLabel1");
+
+        javax.swing.GroupLayout dashPanelLayout = new javax.swing.GroupLayout(dashPanel);
+        dashPanel.setLayout(dashPanelLayout);
+        dashPanelLayout.setHorizontalGroup(
+            dashPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dashPanelLayout.createSequentialGroup()
+                .addGap(129, 129, 129)
+                .addComponent(jLabel1)
+                .addContainerGap(544, Short.MAX_VALUE))
+        );
+        dashPanelLayout.setVerticalGroup(
+            dashPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dashPanelLayout.createSequentialGroup()
+                .addGap(107, 107, 107)
+                .addComponent(jLabel1)
+                .addContainerGap(262, Short.MAX_VALUE))
+        );
+
+        parentPanel.add(dashPanel, "card2");
+
+        jLabel2.setText("config");
+
+        javax.swing.GroupLayout configPanelLayout = new javax.swing.GroupLayout(configPanel);
+        configPanel.setLayout(configPanelLayout);
+        configPanelLayout.setHorizontalGroup(
+            configPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(configPanelLayout.createSequentialGroup()
+                .addGap(176, 176, 176)
+                .addComponent(jLabel2)
+                .addContainerGap(502, Short.MAX_VALUE))
+        );
+        configPanelLayout.setVerticalGroup(
+            configPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(configPanelLayout.createSequentialGroup()
+                .addGap(161, 161, 161)
+                .addComponent(jLabel2)
+                .addContainerGap(208, Short.MAX_VALUE))
+        );
+
+        parentPanel.add(configPanel, "card3");
+
+        jLabel3.setText("smtp");
+
+        javax.swing.GroupLayout smtpPanelLayout = new javax.swing.GroupLayout(smtpPanel);
+        smtpPanel.setLayout(smtpPanelLayout);
+        smtpPanelLayout.setHorizontalGroup(
+            smtpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(smtpPanelLayout.createSequentialGroup()
+                .addGap(219, 219, 219)
+                .addComponent(jLabel3)
+                .addContainerGap(468, Short.MAX_VALUE))
+        );
+        smtpPanelLayout.setVerticalGroup(
+            smtpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(smtpPanelLayout.createSequentialGroup()
+                .addGap(129, 129, 129)
+                .addComponent(jLabel3)
+                .addContainerGap(240, Short.MAX_VALUE))
+        );
+
+        parentPanel.add(smtpPanel, "card4");
+
+        jLabel4.setText("database");
+
+        javax.swing.GroupLayout databasePanelLayout = new javax.swing.GroupLayout(databasePanel);
+        databasePanel.setLayout(databasePanelLayout);
+        databasePanelLayout.setHorizontalGroup(
+            databasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(databasePanelLayout.createSequentialGroup()
+                .addGap(299, 299, 299)
+                .addComponent(jLabel4)
+                .addContainerGap(359, Short.MAX_VALUE))
+        );
+        databasePanelLayout.setVerticalGroup(
+            databasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(databasePanelLayout.createSequentialGroup()
+                .addGap(160, 160, 160)
+                .addComponent(jLabel4)
+                .addContainerGap(209, Short.MAX_VALUE))
+        );
+
+        parentPanel.add(databasePanel, "card5");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bannerLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 824, Short.MAX_VALUE)
+            .addComponent(bannerLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dashMenuLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(configMenuLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(smtpMenuLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(databaseMenuLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(databaseMenuLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dashMenuLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(configMenuLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(parentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 722, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(bannerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dashMenuLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(configMenuLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(smtpMenuLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(databaseMenuLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(dashMenuLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(configMenuLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(smtpMenuLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(databaseMenuLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(parentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void dashMenuLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashMenuLabelMouseClicked
-        if (!isDashMenuSelected) {
-            dashMenuLabel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-            isDashMenuSelected = false;
-        } else {
-            dashMenuLabel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-            isBorderRaised = true;
-        }
+        ControllingMenuButtonsClick.isDashMenuSelected = true;
+        controllingMenuButtonsClick.dashMenuCheckAndCorrectFlags(this);
+        controllingMenuButtonsClick.changeMenuAction(this);        
     }//GEN-LAST:event_dashMenuLabelMouseClicked
+
+    private void configMenuLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_configMenuLabelMouseClicked
+        ControllingMenuButtonsClick.isConfigMenuSelected = true;
+        controllingMenuButtonsClick.configMenuCheckAndCorrectFlags(this);
+        controllingMenuButtonsClick.changeMenuAction(this);
+    }//GEN-LAST:event_configMenuLabelMouseClicked
+
+    private void smtpMenuLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_smtpMenuLabelMouseClicked
+        ControllingMenuButtonsClick.isSmtpMenuSelected = true;
+        controllingMenuButtonsClick.smtpMenuCheckAndCorrectFlags(this);
+        controllingMenuButtonsClick.changeMenuAction(this);
+    }//GEN-LAST:event_smtpMenuLabelMouseClicked
+
+    private void databaseMenuLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_databaseMenuLabelMouseClicked
+        ControllingMenuButtonsClick.isDatabaseMenuSelected = true;
+        controllingMenuButtonsClick.databaseMenuCheckAndCorrectFlags(this);
+        controllingMenuButtonsClick.changeMenuAction(this);
+    }//GEN-LAST:event_databaseMenuLabelMouseClicked
 
     /**
      * @param args the command line arguments
@@ -134,9 +262,9 @@ public class Gui extends javax.swing.JFrame {
             e.printStackTrace();
         }
 
-         //</editor-fold>
-                /* Create and display the form */ java
-        .awt.EventQueue.invokeLater(new Runnable() {
+
+        //</editor-fold>
+        /* Create and display the form */ java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Gui().setVisible(true);
             }
@@ -144,16 +272,22 @@ public class Gui extends javax.swing.JFrame {
     }
 
     //my variables
-    boolean isDashMenuSelected = false;
-    boolean isConfigMenuSelected = false;
-    boolean isSmtpMenuSelected = false;
-    boolean isDatabaseMenuSelected = false;
-    
+    ControllingMenuButtonsClick controllingMenuButtonsClick;
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel bannerLabel;
-    private javax.swing.JLabel configMenuLabel;
-    private javax.swing.JLabel dashMenuLabel;
-    private javax.swing.JLabel databaseMenuLabel;
-    private javax.swing.JLabel smtpMenuLabel;
+    public javax.swing.JLabel bannerLabel;
+    public javax.swing.JLabel configMenuLabel;
+    public javax.swing.JPanel configPanel;
+    public javax.swing.JLabel dashMenuLabel;
+    public javax.swing.JPanel dashPanel;
+    public javax.swing.JLabel databaseMenuLabel;
+    public javax.swing.JPanel databasePanel;
+    public javax.swing.JLabel jLabel1;
+    public javax.swing.JLabel jLabel2;
+    public javax.swing.JLabel jLabel3;
+    public javax.swing.JLabel jLabel4;
+    public javax.swing.JPanel parentPanel;
+    public javax.swing.JLabel smtpMenuLabel;
+    public javax.swing.JPanel smtpPanel;
     // End of variables declaration//GEN-END:variables
 }
