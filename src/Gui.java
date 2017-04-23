@@ -1,4 +1,5 @@
 
+import java.awt.Color;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
 
@@ -42,10 +43,10 @@ public class Gui extends javax.swing.JFrame {
         configMenuBannerText = new javax.swing.JLabel();
         removeFromTable = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableOfHosts = new javax.swing.JTable();
         addToTable = new javax.swing.JLabel();
         hostNameTextField = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
+        descriptionTextField = new javax.swing.JTextField();
         IpPanel = new javax.swing.JPanel();
         firstOctet = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -142,15 +143,12 @@ public class Gui extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableOfHosts.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
-                "Hostname", "IP address", "Description"
+                "IP address", "Hostname", "Description"
             }
         ) {
             Class[] types = new Class [] {
@@ -168,7 +166,7 @@ public class Gui extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tableOfHosts);
 
         addToTable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         addToTable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/plus.png"))); // NOI18N
@@ -185,11 +183,23 @@ public class Gui extends javax.swing.JFrame {
             }
         });
 
+        hostNameTextField.setForeground(Color.GRAY);
         hostNameTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         hostNameTextField.setText("Hostname");
+        hostNameTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                hostNameTextFieldFocusGained(evt);
+            }
+        });
 
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField1.setText("Description");
+        descriptionTextField.setForeground(Color.GRAY);
+        descriptionTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        descriptionTextField.setText("Description");
+        descriptionTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                descriptionTextFieldFocusGained(evt);
+            }
+        });
 
         IpPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -228,11 +238,11 @@ public class Gui extends javax.swing.JFrame {
             }
         });
         secondOctet.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                secondOctetKeyPressed(evt);
-            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 secondOctetKeyTyped(evt);
+            }
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                secondOctetKeyPressed(evt);
             }
         });
 
@@ -252,11 +262,11 @@ public class Gui extends javax.swing.JFrame {
             }
         });
         thirdOctet.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                thirdOctetKeyPressed(evt);
-            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 thirdOctetKeyTyped(evt);
+            }
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                thirdOctetKeyPressed(evt);
             }
         });
 
@@ -276,11 +286,11 @@ public class Gui extends javax.swing.JFrame {
             }
         });
         fourthOctet.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                fourthOctetKeyPressed(evt);
-            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 fourthOctetKeyTyped(evt);
+            }
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                fourthOctetKeyPressed(evt);
             }
         });
 
@@ -306,15 +316,17 @@ public class Gui extends javax.swing.JFrame {
         IpPanelLayout.setVerticalGroup(
             IpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(IpPanelLayout.createSequentialGroup()
-                .addGroup(IpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(firstOctet, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(IpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
-                        .addComponent(secondOctet, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5)
-                        .addComponent(thirdOctet, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel6)
-                        .addComponent(fourthOctet, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(IpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(secondOctet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(thirdOctet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(fourthOctet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, IpPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(firstOctet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -325,17 +337,17 @@ public class Gui extends javax.swing.JFrame {
             .addGroup(configPanelLayout.createSequentialGroup()
                 .addGap(211, 211, 211)
                 .addComponent(configMenuBannerText)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(239, Short.MAX_VALUE))
             .addGroup(configPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(configPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(configPanelLayout.createSequentialGroup()
-                        .addComponent(hostNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23)
                         .addComponent(IpPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(77, 77, 77)
+                        .addGap(30, 30, 30)
+                        .addComponent(hostNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(descriptionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(addToTable, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(removeFromTable, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -350,13 +362,12 @@ public class Gui extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(configPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, configPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(configPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(removeFromTable, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, configPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(hostNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addComponent(addToTable, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(IpPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(removeFromTable, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(addToTable, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(IpPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, configPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(hostNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(descriptionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -476,7 +487,7 @@ public class Gui extends javax.swing.JFrame {
     }//GEN-LAST:event_removeFromTableMouseReleased
 
     private void removeFromTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeFromTableMouseClicked
-
+        
     }//GEN-LAST:event_removeFromTableMouseClicked
 
     private void addToTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addToTableMousePressed
@@ -488,7 +499,7 @@ public class Gui extends javax.swing.JFrame {
     }//GEN-LAST:event_addToTableMouseReleased
 
     private void addToTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addToTableMouseClicked
-        // TODO add your handling code here:
+        addToTableClass.addRecord(this);
     }//GEN-LAST:event_addToTableMouseClicked
 
     private void firstOctetFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_firstOctetFocusGained
@@ -678,6 +689,20 @@ public class Gui extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_fourthOctetKeyTyped
 
+    private void hostNameTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_hostNameTextFieldFocusGained
+        if (hostNameTextField.getText().equals("Hostname") && hostNameTextField.getForeground().toString().endsWith("b=128]")) {
+            hostNameTextField.setText("");
+            hostNameTextField.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_hostNameTextFieldFocusGained
+
+    private void descriptionTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_descriptionTextFieldFocusGained
+        if (descriptionTextField.getText().equals("Description") && descriptionTextField.getForeground().toString().endsWith("b=128]")) {
+            descriptionTextField.setText("");
+            descriptionTextField.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_descriptionTextFieldFocusGained
+
     /**
      * @param args the command line arguments
      */
@@ -721,6 +746,30 @@ public class Gui extends javax.swing.JFrame {
 
     //my variables
     ControllingMenuButtonsClick controllingMenuButtonsClick;
+    AddToTable addToTableClass = new AddToTable();
+    
+    
+
+    //IP Panel variables
+    int fInt = 0;
+    String fStr = "";
+    int sInt = 0;
+    ;
+    String sStr = "";
+    int tInt = 0;
+    ;
+    String tStr = "";
+    int fourInt = 0;
+    String fourStr = "";
+
+    boolean firstPress = false;
+    boolean secondPress = false;
+    boolean thirdPress = false;
+    boolean fourthPress = false;
+
+    public static String PASSWORD;
+    public static String LOGIN;
+    static String ip;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel IpPanel;
@@ -733,9 +782,10 @@ public class Gui extends javax.swing.JFrame {
     public javax.swing.JPanel dashPanel;
     public javax.swing.JLabel databaseMenuLabel;
     public javax.swing.JPanel databasePanel;
-    private javax.swing.JTextField firstOctet;
-    private javax.swing.JTextField fourthOctet;
-    private javax.swing.JTextField hostNameTextField;
+    public javax.swing.JTextField descriptionTextField;
+    public javax.swing.JTextField firstOctet;
+    public javax.swing.JTextField fourthOctet;
+    public javax.swing.JTextField hostNameTextField;
     public javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     public javax.swing.JLabel jLabel3;
@@ -743,13 +793,12 @@ public class Gui extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     public javax.swing.JPanel parentPanel;
     private javax.swing.JLabel removeFromTable;
-    private javax.swing.JTextField secondOctet;
+    public javax.swing.JTextField secondOctet;
     public javax.swing.JLabel smtpMenuLabel;
     public javax.swing.JPanel smtpPanel;
-    private javax.swing.JTextField thirdOctet;
+    public javax.swing.JTable tableOfHosts;
+    public javax.swing.JTextField thirdOctet;
     // End of variables declaration//GEN-END:variables
 }
