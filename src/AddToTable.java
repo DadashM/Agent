@@ -21,8 +21,9 @@ public class AddToTable {
         }
 
         if (isAddressSpecified && isHostnameSpecified) {
+            gui.ip = gui.firstOctet.getText() + "." + gui.secondOctet.getText() + "." + gui.thirdOctet.getText() + "." + gui.fourthOctet.getText();
             DefaultTableModel defaultTableModel = (DefaultTableModel) gui.tableOfHosts.getModel();
-            defaultTableModel.addRow(new Object[]{gui.hostNameTextField.getText(),gui.hostNameTextField.getText(),gui.descriptionTextField.getText()});
+            defaultTableModel.addRow(new Object[]{gui.ip, gui.hostNameTextField.getText(), gui.descriptionTextField.getForeground().toString().endsWith("b=128]") ? "" : gui.descriptionTextField.getText()});
         } else {
             JOptionPane.showMessageDialog(gui, "IP address or Hostname isn't specified", "Warning", JOptionPane.WARNING_MESSAGE);
         }
