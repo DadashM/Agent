@@ -1,4 +1,6 @@
 
+import java.util.Comparator;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -50,9 +52,5 @@ public class AddToTable {
         defaultTableModel.removeRow(gui.tableOfHosts.getSelectedRow());
     }
 
-    public void sort(Gui gui) {
-        defaultTableModel = (DefaultTableModel) gui.tableOfHosts.getModel();
-        TableRowSorter<DefaultTableModel> rowSorter = new TableRowSorter<DefaultTableModel>(defaultTableModel);
-        gui.tableOfHosts.setRowSorter(rowSorter);
-    }
+
 }

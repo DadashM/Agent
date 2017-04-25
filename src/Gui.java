@@ -23,9 +23,9 @@ public class Gui extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         controllingMenuButtonsClick = new ControllingMenuButtonsClick();
-        addToTableClass.sort(this);
+        tableSortingAction = new TableSortingAction();
+        tableSortingAction.sort(this);
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -157,18 +157,11 @@ public class Gui extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, true, true
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(tableOfHosts);
@@ -492,6 +485,7 @@ public class Gui extends javax.swing.JFrame {
     }//GEN-LAST:event_removeFromTableMouseReleased
 
     private void removeFromTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeFromTableMouseClicked
+        addToTableClass = new AddToTable();
         addToTableClass.deleteRecord(this);
     }//GEN-LAST:event_removeFromTableMouseClicked
 
@@ -505,6 +499,7 @@ public class Gui extends javax.swing.JFrame {
     }//GEN-LAST:event_addToTableMouseReleased
 
     private void addToTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addToTableMouseClicked
+        addToTableClass = new AddToTable();
         addToTableClass.addRecord(this);
     }//GEN-LAST:event_addToTableMouseClicked
 
@@ -752,9 +747,8 @@ public class Gui extends javax.swing.JFrame {
 
     //my variables
     ControllingMenuButtonsClick controllingMenuButtonsClick;
-    AddToTable addToTableClass = new AddToTable();
-    
-    
+    AddToTable addToTableClass;
+    TableSortingAction tableSortingAction;
 
     //IP Panel variables
     int fInt = 0;
