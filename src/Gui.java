@@ -2,6 +2,8 @@
 import java.awt.Color;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -19,8 +21,11 @@ public class Gui extends javax.swing.JFrame {
      */
     public Gui() {
         initComponents();
+        this.setLocationRelativeTo(null);
         controllingMenuButtonsClick = new ControllingMenuButtonsClick();
+        addToTableClass.sort(this);
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -132,14 +137,14 @@ public class Gui extends javax.swing.JFrame {
         removeFromTable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/minus.png"))); // NOI18N
         removeFromTable.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         removeFromTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                removeFromTableMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 removeFromTableMousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 removeFromTableMouseReleased(evt);
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                removeFromTableMouseClicked(evt);
             }
         });
 
@@ -155,7 +160,7 @@ public class Gui extends javax.swing.JFrame {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -172,14 +177,14 @@ public class Gui extends javax.swing.JFrame {
         addToTable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/plus.png"))); // NOI18N
         addToTable.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         addToTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addToTableMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 addToTableMousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 addToTableMouseReleased(evt);
-            }
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                addToTableMouseClicked(evt);
             }
         });
 
@@ -487,10 +492,11 @@ public class Gui extends javax.swing.JFrame {
     }//GEN-LAST:event_removeFromTableMouseReleased
 
     private void removeFromTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeFromTableMouseClicked
-        
+        addToTableClass.deleteRecord(this);
     }//GEN-LAST:event_removeFromTableMouseClicked
 
     private void addToTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addToTableMousePressed
+        addToTable.requestFocus();
         addToTable.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
     }//GEN-LAST:event_addToTableMousePressed
 
