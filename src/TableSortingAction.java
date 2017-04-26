@@ -12,40 +12,34 @@ public class TableSortingAction {
         defaultTableModel = (DefaultTableModel) gui.tableOfHosts.getModel();
         TableRowSorter<DefaultTableModel> rowSorter = new TableRowSorter<DefaultTableModel>(defaultTableModel);
 
-        class IntCompare implements Comparator {
-
-            @Override
-            public int compare(Object o1, Object o2) {
-
-                Integer int1 = (Integer) intO1(o1);
-                Integer int2 = (Integer) intO2(o2);
-
-                return int1.compareTo(int2);
-            }
-
-            @Override
-            public boolean equals(Object obj) {
-                return this.equals(obj);
-            }
-
-            public int intO1(Object o1) {
-                String str1 = (String) o1;
-                String[] final1 = str1.split("\\.");
-
-                System.out.println(Arrays.toString(final1));
-            }
-
-            public int intO2(Object o2) {
-                String str1 = (String) o1;
-                String[] final1 = str1.split("\\.");
-
-                System.out.println(Arrays.toString(final1));
-            }
-
-        }
-
         rowSorter.setComparator(0, new IntCompare());
         gui.tableOfHosts.setRowSorter(rowSorter);
         gui.tableOfHosts.setAutoCreateRowSorter(false);
     }
+
+}
+
+class IntCompare implements Comparator {
+
+    @Override
+    public int compare(Object o1, Object o2) {
+
+        Integer int1 = (Integer) intO1(o1);
+        Integer int2 = (Integer) o2;
+
+        return int1.compareTo(int2);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return this.equals(obj);
+    }
+
+    public void intO1(Object o1) {
+        String str1 = (String) o1;
+        String[] final1 = str1.split("\\.");
+
+        System.out.println(Arrays.toString(final1));
+    }
+
 }
