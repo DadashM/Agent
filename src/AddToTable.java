@@ -49,8 +49,12 @@ public class AddToTable {
 
     public void deleteRecord(Gui gui) {
         defaultTableModel = (DefaultTableModel) gui.tableOfHosts.getModel();
-        defaultTableModel.removeRow(gui.tableOfHosts.getSelectedRow());
+        if (defaultTableModel.getRowCount() != 0) {
+            if (gui.tableOfHosts.getSelectedRow() != -1) {
+                defaultTableModel.removeRow(gui.tableOfHosts.getSelectedRow());
+            }
+        }
     }
 
-
 }
+

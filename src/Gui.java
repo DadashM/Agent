@@ -1,8 +1,11 @@
 
 import java.awt.Color;
+import javax.swing.JLabel;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableRowSorter;
 
 /*
@@ -21,6 +24,7 @@ public class Gui extends javax.swing.JFrame {
      */
     public Gui() {
         initComponents();
+        changeTableFontAndAlign();
         this.setLocationRelativeTo(null);
         controllingMenuButtonsClick = new ControllingMenuButtonsClick();
         tableSortingAction = new TableSortingAction();
@@ -43,7 +47,6 @@ public class Gui extends javax.swing.JFrame {
         databaseMenuLabel = new javax.swing.JLabel();
         parentPanel = new javax.swing.JPanel();
         dashPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         configPanel = new javax.swing.JPanel();
         configMenuBannerText = new javax.swing.JLabel();
         removeFromTable = new javax.swing.JLabel();
@@ -73,7 +76,7 @@ public class Gui extends javax.swing.JFrame {
         dashMenuLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         dashMenuLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/dash.png"))); // NOI18N
         dashMenuLabel.setToolTipText("");
-        dashMenuLabel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        dashMenuLabel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         dashMenuLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 dashMenuLabelMouseClicked(evt);
@@ -109,42 +112,34 @@ public class Gui extends javax.swing.JFrame {
 
         parentPanel.setLayout(new java.awt.CardLayout());
 
-        jLabel1.setText("jLabel1");
-
         javax.swing.GroupLayout dashPanelLayout = new javax.swing.GroupLayout(dashPanel);
         dashPanel.setLayout(dashPanelLayout);
         dashPanelLayout.setHorizontalGroup(
             dashPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dashPanelLayout.createSequentialGroup()
-                .addGap(129, 129, 129)
-                .addComponent(jLabel1)
-                .addContainerGap(544, Short.MAX_VALUE))
+            .addGap(0, 722, Short.MAX_VALUE)
         );
         dashPanelLayout.setVerticalGroup(
             dashPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dashPanelLayout.createSequentialGroup()
-                .addGap(107, 107, 107)
-                .addComponent(jLabel1)
-                .addContainerGap(332, Short.MAX_VALUE))
+            .addGap(0, 456, Short.MAX_VALUE)
         );
 
         parentPanel.add(dashPanel, "card2");
 
         configMenuBannerText.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
-        configMenuBannerText.setText("Configuration Hosts To Analyse");
+        configMenuBannerText.setText("Monitored Hosts");
 
         removeFromTable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         removeFromTable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/minus.png"))); // NOI18N
         removeFromTable.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         removeFromTable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                removeFromTableMouseClicked(evt);
-            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 removeFromTableMousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 removeFromTableMouseReleased(evt);
+            }
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                removeFromTableMouseClicked(evt);
             }
         });
 
@@ -333,10 +328,6 @@ public class Gui extends javax.swing.JFrame {
         configPanelLayout.setHorizontalGroup(
             configPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(configPanelLayout.createSequentialGroup()
-                .addGap(211, 211, 211)
-                .addComponent(configMenuBannerText)
-                .addContainerGap(239, Short.MAX_VALUE))
-            .addGroup(configPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(configPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(configPanelLayout.createSequentialGroup()
@@ -345,12 +336,16 @@ public class Gui extends javax.swing.JFrame {
                         .addComponent(hostNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(descriptionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
                         .addComponent(addToTable, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(removeFromTable, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
+            .addGroup(configPanelLayout.createSequentialGroup()
+                .addGap(274, 274, 274)
+                .addComponent(configMenuBannerText)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         configPanelLayout.setVerticalGroup(
             configPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -695,6 +690,8 @@ public class Gui extends javax.swing.JFrame {
             hostNameTextField.setText("");
             hostNameTextField.setForeground(Color.BLACK);
         }
+
+        hostNameTextField.selectAll();
     }//GEN-LAST:event_hostNameTextFieldFocusGained
 
     private void descriptionTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_descriptionTextFieldFocusGained
@@ -702,7 +699,18 @@ public class Gui extends javax.swing.JFrame {
             descriptionTextField.setText("");
             descriptionTextField.setForeground(Color.BLACK);
         }
+
+        descriptionTextField.selectAll();
     }//GEN-LAST:event_descriptionTextFieldFocusGained
+
+    public void changeTableFontAndAlign() {
+        DefaultTableCellRenderer render = new DefaultTableCellRenderer();
+        render.setHorizontalAlignment(JLabel.CENTER);
+        tableOfHosts.getColumnModel().getColumn(0).setCellRenderer(render);
+        tableOfHosts.getColumnModel().getColumn(1).setCellRenderer(render);
+        tableOfHosts.getColumnModel().getColumn(2).setCellRenderer(render);
+
+    }
 
     /**
      * @param args the command line arguments
@@ -786,7 +794,6 @@ public class Gui extends javax.swing.JFrame {
     public javax.swing.JTextField firstOctet;
     public javax.swing.JTextField fourthOctet;
     public javax.swing.JTextField hostNameTextField;
-    public javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     public javax.swing.JLabel jLabel3;
     public javax.swing.JLabel jLabel4;
