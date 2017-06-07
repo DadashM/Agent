@@ -2,6 +2,7 @@
 import java.util.Comparator;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -30,6 +31,7 @@ public class AddToTable {
         } else {
             JOptionPane.showMessageDialog(gui, "IP address or Hostname isn't specified", "Warning", JOptionPane.WARNING_MESSAGE);
         }
+       
     }
 
     public void checkTableForDublicate(Gui gui) {
@@ -56,5 +58,13 @@ public class AddToTable {
         }
     }
 
-}
+    public void clearFields(JTextField first, JTextField second, JTextField third, JTextField fourth, JTextField hostName, JTextField description) {
+        first.setText("");
+        second.setText("");
+        third.setText("");
+        fourth.setText("");
+        hostName.setText("");
+        description.setText("");
+    }
 
+}
