@@ -46,7 +46,7 @@ public class AddToTable {
         }
 
         defaultTableModel.addRow(new Object[]{gui.ip, gui.hostNameTextField.getText(), gui.descriptionTextField.getForeground().toString().endsWith("b=128]") ? "" : gui.descriptionTextField.getText()});
-
+        clearFields(gui.firstOctet, gui.secondOctet, gui.thirdOctet, gui.fourthOctet, gui.hostNameTextField, gui.descriptionTextField);
     }
 
     public void deleteRecord(Gui gui) {

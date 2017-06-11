@@ -1,7 +1,10 @@
 
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -64,6 +67,11 @@ public class Gui extends javax.swing.JFrame {
         descriptionTextField = new javax.swing.JTextField();
         addToTable = new javax.swing.JLabel();
         removeFromTable = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        clearTableButton = new javax.swing.JLabel();
+        startMonitoring = new javax.swing.JLabel();
+        stopMonitoring = new javax.swing.JLabel();
+        startAllManitoring = new javax.swing.JLabel();
         smtpPanel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         databasePanel = new javax.swing.JPanel();
@@ -123,11 +131,11 @@ public class Gui extends javax.swing.JFrame {
         dashPanel.setLayout(dashPanelLayout);
         dashPanelLayout.setHorizontalGroup(
             dashPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 854, Short.MAX_VALUE)
+            .addGap(0, 957, Short.MAX_VALUE)
         );
         dashPanelLayout.setVerticalGroup(
             dashPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 459, Short.MAX_VALUE)
+            .addGap(0, 536, Short.MAX_VALUE)
         );
 
         parentPanel.add(dashPanel, "card2");
@@ -137,18 +145,31 @@ public class Gui extends javax.swing.JFrame {
 
             },
             new String [] {
-                "IP address", "Hostname", "Description"
+                "IP address", "Hostname", "Description", "Monitoring Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, true, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
         jScrollPane1.setViewportView(tableOfHosts);
+        if (tableOfHosts.getColumnModel().getColumnCount() > 0) {
+            tableOfHosts.getColumnModel().getColumn(0).setResizable(false);
+            tableOfHosts.getColumnModel().getColumn(1).setResizable(false);
+            tableOfHosts.getColumnModel().getColumn(2).setResizable(false);
+            tableOfHosts.getColumnModel().getColumn(3).setResizable(false);
+        }
 
         IpPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -316,14 +337,76 @@ public class Gui extends javax.swing.JFrame {
         removeFromTable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/minus.png"))); // NOI18N
         removeFromTable.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         removeFromTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                removeFromTableMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 removeFromTableMousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 removeFromTableMouseReleased(evt);
             }
+        });
+
+        jLabel1.setText("IP Address: ");
+
+        clearTableButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        clearTableButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/clear_all_button.png"))); // NOI18N
+        clearTableButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        clearTableButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                removeFromTableMouseClicked(evt);
+                clearTableButtonMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                clearTableButtonMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                clearTableButtonMouseReleased(evt);
+            }
+        });
+
+        startMonitoring.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        startMonitoring.setText("start");
+        startMonitoring.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        startMonitoring.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                startMonitoringMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                startMonitoringMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                startMonitoringMouseReleased(evt);
+            }
+        });
+
+        stopMonitoring.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        stopMonitoring.setText("stop");
+        stopMonitoring.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        stopMonitoring.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                stopMonitoringMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                stopMonitoringMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                stopMonitoringMouseReleased(evt);
+            }
+        });
+
+        startAllManitoring.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        startAllManitoring.setText("all");
+        startAllManitoring.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        startAllManitoring.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                startAllManitoringMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                startAllManitoringMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                startAllManitoringMouseReleased(evt);
             }
         });
 
@@ -333,33 +416,49 @@ public class Gui extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(IpPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(IpPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(hostNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(descriptionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(addToTable, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(removeFromTable, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(clearTableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addComponent(startMonitoring, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(stopMonitoring, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(startAllManitoring, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(hostNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(descriptionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(IpPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(removeFromTable, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(addToTable, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(addToTable, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(clearTableButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(stopMonitoring, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(startAllManitoring, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(startMonitoring, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(IpPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(hostNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(descriptionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
@@ -370,8 +469,8 @@ public class Gui extends javax.swing.JFrame {
             .addGroup(configPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(configPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 834, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         configPanelLayout.setVerticalGroup(
@@ -380,7 +479,7 @@ public class Gui extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -395,14 +494,14 @@ public class Gui extends javax.swing.JFrame {
             .addGroup(smtpPanelLayout.createSequentialGroup()
                 .addGap(219, 219, 219)
                 .addComponent(jLabel3)
-                .addContainerGap(612, Short.MAX_VALUE))
+                .addContainerGap(715, Short.MAX_VALUE))
         );
         smtpPanelLayout.setVerticalGroup(
             smtpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(smtpPanelLayout.createSequentialGroup()
                 .addGap(129, 129, 129)
                 .addComponent(jLabel3)
-                .addContainerGap(316, Short.MAX_VALUE))
+                .addContainerGap(393, Short.MAX_VALUE))
         );
 
         parentPanel.add(smtpPanel, "card4");
@@ -416,14 +515,14 @@ public class Gui extends javax.swing.JFrame {
             .addGroup(databasePanelLayout.createSequentialGroup()
                 .addGap(299, 299, 299)
                 .addComponent(jLabel4)
-                .addContainerGap(510, Short.MAX_VALUE))
+                .addContainerGap(613, Short.MAX_VALUE))
         );
         databasePanelLayout.setVerticalGroup(
             databasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(databasePanelLayout.createSequentialGroup()
                 .addGap(160, 160, 160)
                 .addComponent(jLabel4)
-                .addContainerGap(285, Short.MAX_VALUE))
+                .addContainerGap(362, Short.MAX_VALUE))
         );
 
         parentPanel.add(databasePanel, "card5");
@@ -514,8 +613,8 @@ public class Gui extends javax.swing.JFrame {
     private void addToTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addToTableMouseClicked
         addToTableClass = new AddToTable();
         addToTableClass.addRecord(this);
-        addToTableClass.clearFields(firstOctet, secondOctet, thirdOctet, fourthOctet, hostNameTextField, descriptionTextField);
         
+
     }//GEN-LAST:event_addToTableMouseClicked
 
     private void firstOctetFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_firstOctetFocusGained
@@ -729,13 +828,70 @@ public class Gui extends javax.swing.JFrame {
 
     }//GEN-LAST:event_bannerLabelMouseClicked
 
+    private void clearTableButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clearTableButtonMouseClicked
+        DefaultTableModel defaultTableModel = (DefaultTableModel) tableOfHosts.getModel();
+        defaultTableModel.setRowCount(0);
+    }//GEN-LAST:event_clearTableButtonMouseClicked
+
+    private void clearTableButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clearTableButtonMousePressed
+        clearTableButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+    }//GEN-LAST:event_clearTableButtonMousePressed
+
+    private void clearTableButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clearTableButtonMouseReleased
+        clearTableButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+    }//GEN-LAST:event_clearTableButtonMouseReleased
+
+    private void startMonitoringMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_startMonitoringMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_startMonitoringMouseClicked
+
+    private void startMonitoringMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_startMonitoringMousePressed
+        startMonitoring.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+    }//GEN-LAST:event_startMonitoringMousePressed
+
+    private void startMonitoringMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_startMonitoringMouseReleased
+        startMonitoring.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+    }//GEN-LAST:event_startMonitoringMouseReleased
+
+    private void stopMonitoringMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stopMonitoringMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_stopMonitoringMouseClicked
+
+    private void stopMonitoringMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stopMonitoringMousePressed
+        stopMonitoring.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+    }//GEN-LAST:event_stopMonitoringMousePressed
+
+    private void stopMonitoringMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_stopMonitoringMouseReleased
+        stopMonitoring.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+    }//GEN-LAST:event_stopMonitoringMouseReleased
+
+    private void startAllManitoringMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_startAllManitoringMouseClicked
+
+    }//GEN-LAST:event_startAllManitoringMouseClicked
+
+    private void startAllManitoringMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_startAllManitoringMousePressed
+        startAllManitoring.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+    }//GEN-LAST:event_startAllManitoringMousePressed
+
+    private void startAllManitoringMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_startAllManitoringMouseReleased
+        startAllManitoring.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+    }//GEN-LAST:event_startAllManitoringMouseReleased
+
     public void changeTableFontAndAlign() {
         DefaultTableCellRenderer render = new DefaultTableCellRenderer();
+        MyRendererStatus myRendererStatus = new MyRendererStatus();
+        MyRendererIP myRendererIP = new MyRendererIP();
+        
+        
         render.setHorizontalAlignment(JLabel.CENTER);
-        tableOfHosts.getColumnModel().getColumn(0).setCellRenderer(render);
+
+        tableOfHosts.getColumnModel().getColumn(0).setCellRenderer(myRendererIP);
         tableOfHosts.getColumnModel().getColumn(1).setCellRenderer(render);
         tableOfHosts.getColumnModel().getColumn(2).setCellRenderer(render);
+        tableOfHosts.getColumnModel().getColumn(3).setCellRenderer(myRendererStatus);
 
+        tableOfHosts.getTableHeader().setFont(new Font("Consolas", Font.PLAIN, 15));
+        tableOfHosts.setFont(new Font("Consolas", Font.PLAIN, 14));
     }
 
     /**
@@ -809,6 +965,7 @@ public class Gui extends javax.swing.JFrame {
     private javax.swing.JPanel IpPanel;
     private javax.swing.JLabel addToTable;
     public javax.swing.JLabel bannerLabel;
+    private javax.swing.JLabel clearTableButton;
     public javax.swing.JLabel configMenuLabel;
     public javax.swing.JPanel configPanel;
     public javax.swing.JLabel dashMenuLabel;
@@ -819,6 +976,7 @@ public class Gui extends javax.swing.JFrame {
     public javax.swing.JTextField firstOctet;
     public javax.swing.JTextField fourthOctet;
     public javax.swing.JTextField hostNameTextField;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     public javax.swing.JLabel jLabel3;
     public javax.swing.JLabel jLabel4;
@@ -831,6 +989,9 @@ public class Gui extends javax.swing.JFrame {
     public javax.swing.JTextField secondOctet;
     public javax.swing.JLabel smtpMenuLabel;
     public javax.swing.JPanel smtpPanel;
+    private javax.swing.JLabel startAllManitoring;
+    private javax.swing.JLabel startMonitoring;
+    private javax.swing.JLabel stopMonitoring;
     public javax.swing.JTable tableOfHosts;
     public javax.swing.JTextField thirdOctet;
     // End of variables declaration//GEN-END:variables
