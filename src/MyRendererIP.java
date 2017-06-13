@@ -9,8 +9,11 @@ import javax.swing.table.DefaultTableCellRenderer;
 public class MyRendererIP extends DefaultTableCellRenderer {
 
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-        
-        setText(Gui.ip);
+
+
+        if (row == Gui.currentRowNumber) {
+            setText(Gui.ip);
+        }
         setBackground(new Color(224, 223, 222));
         setHorizontalAlignment(JLabel.CENTER);
         setFont(new Font("Consolas", Font.PLAIN, 14));

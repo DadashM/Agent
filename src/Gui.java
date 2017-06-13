@@ -939,6 +939,7 @@ public class Gui extends javax.swing.JFrame {
     ControllingMenuButtonsClick controllingMenuButtonsClick;
     AddToTable addToTableClass;
     TableSortingAction tableSortingAction;
+    static int currentRowNumber = 0; 
 
     //IP Panel variables
     int fInt = 0;

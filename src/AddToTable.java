@@ -13,6 +13,7 @@ public class AddToTable {
     DefaultTableModel defaultTableModel;
 
     public void addRecord(Gui gui) {
+        System.out.println("Add record ---------- ");
         if (gui.firstOctet.getText().isEmpty() || gui.secondOctet.getText().isEmpty() || gui.thirdOctet.getText().isEmpty() || gui.fourthOctet.getText().isEmpty()) {
             isAddressSpecified = false;
         } else {
@@ -46,6 +47,15 @@ public class AddToTable {
         }
 
         defaultTableModel.addRow(new Object[]{gui.ip, gui.hostNameTextField.getText(), gui.descriptionTextField.getForeground().toString().endsWith("b=128]") ? "" : gui.descriptionTextField.getText()});
+        
+        for(int i = 1; i <= defaultTableModel.getRowCount(); i++){
+            System.out.println("i = " + i);
+            System.out.println("rowcount = " + gui.tableOfHosts.getRowCount());
+            if (defaultTableModel.getValueAt(i-1, 0).equals(gui.ip)) {
+                Gui.currentRowNumber = i;
+            }
+        }
+        
         clearFields(gui.firstOctet, gui.secondOctet, gui.thirdOctet, gui.fourthOctet, gui.hostNameTextField, gui.descriptionTextField);
     }
 
