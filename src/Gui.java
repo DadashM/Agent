@@ -2,6 +2,7 @@
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTable;
@@ -290,6 +291,12 @@ public class Gui extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 addToTableMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                addToTableMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                addToTableMouseExited(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 addToTableMousePressed(evt);
             }
@@ -299,17 +306,16 @@ public class Gui extends javax.swing.JFrame {
         });
 
         removeFromTable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        removeFromTable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/minus.png"))); // NOI18N
-        removeFromTable.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        removeFromTable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/delete.png"))); // NOI18N
         removeFromTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 removeFromTableMouseClicked(evt);
             }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                removeFromTableMousePressed(evt);
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                removeFromTableMouseEntered(evt);
             }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                removeFromTableMouseReleased(evt);
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                removeFromTableMouseExited(evt);
             }
         });
 
@@ -317,16 +323,15 @@ public class Gui extends javax.swing.JFrame {
 
         clearTableButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         clearTableButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/clear_all_button.png"))); // NOI18N
-        clearTableButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         clearTableButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 clearTableButtonMouseClicked(evt);
             }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                clearTableButtonMousePressed(evt);
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                clearTableButtonMouseEntered(evt);
             }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                clearTableButtonMouseReleased(evt);
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                clearTableButtonMouseExited(evt);
             }
         });
 
@@ -501,6 +506,12 @@ public class Gui extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 dashMenuLabelMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                dashMenuLabelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                dashMenuLabelMouseExited(evt);
+            }
         });
 
         configMenuLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -509,8 +520,11 @@ public class Gui extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 configMenuLabelMouseClicked(evt);
             }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                configMenuLabelMousePressed(evt);
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                configMenuLabelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                configMenuLabelMouseExited(evt);
             }
         });
 
@@ -520,13 +534,25 @@ public class Gui extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 databaseMenuLabelMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                databaseMenuLabelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                databaseMenuLabelMouseExited(evt);
+            }
         });
 
         smtpMenuLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        smtpMenuLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/mail_e.png"))); // NOI18N
+        smtpMenuLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/res/email.png"))); // NOI18N
         smtpMenuLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 smtpMenuLabelMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                smtpMenuLabelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                smtpMenuLabelMouseExited(evt);
             }
         });
 
@@ -535,18 +561,17 @@ public class Gui extends javax.swing.JFrame {
         buttonsPanelLayout.setHorizontalGroup(
             buttonsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(configMenuLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(buttonsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(dashMenuLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(buttonsPanelLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(smtpMenuLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addComponent(databaseMenuLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(buttonsPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(smtpMenuLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(databaseMenuLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(dashMenuLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         buttonsPanelLayout.setVerticalGroup(
             buttonsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(buttonsPanelLayout.createSequentialGroup()
                 .addComponent(dashMenuLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+                .addGap(1, 1, 1)
                 .addComponent(configMenuLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(smtpMenuLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -572,9 +597,7 @@ public class Gui extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(parentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(buttonsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(0, 0, 0))))
+                    .addComponent(buttonsPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         pack();
@@ -604,32 +627,23 @@ public class Gui extends javax.swing.JFrame {
         controllingMenuButtonsClick.changeMenuAction(this);
     }//GEN-LAST:event_databaseMenuLabelMouseClicked
 
-    private void removeFromTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeFromTableMousePressed
-        removeFromTable.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-    }//GEN-LAST:event_removeFromTableMousePressed
-
-    private void removeFromTableMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeFromTableMouseReleased
-        removeFromTable.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-    }//GEN-LAST:event_removeFromTableMouseReleased
-
     private void removeFromTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeFromTableMouseClicked
         addToTableClass = new AddToTable();
         addToTableClass.deleteRecord(this);
     }//GEN-LAST:event_removeFromTableMouseClicked
 
     private void addToTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addToTableMousePressed
-        addToTable.requestFocus();
-        addToTable.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+
     }//GEN-LAST:event_addToTableMousePressed
 
     private void addToTableMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addToTableMouseReleased
-        addToTable.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
     }//GEN-LAST:event_addToTableMouseReleased
 
     private void addToTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addToTableMouseClicked
         addToTableClass = new AddToTable();
         addToTableClass.addRecord(this);
-        
+
 
     }//GEN-LAST:event_addToTableMouseClicked
 
@@ -849,14 +863,6 @@ public class Gui extends javax.swing.JFrame {
         defaultTableModel.setRowCount(0);
     }//GEN-LAST:event_clearTableButtonMouseClicked
 
-    private void clearTableButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clearTableButtonMousePressed
-        clearTableButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-    }//GEN-LAST:event_clearTableButtonMousePressed
-
-    private void clearTableButtonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clearTableButtonMouseReleased
-        clearTableButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-    }//GEN-LAST:event_clearTableButtonMouseReleased
-
     private void startMonitoringMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_startMonitoringMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_startMonitoringMouseClicked
@@ -893,16 +899,67 @@ public class Gui extends javax.swing.JFrame {
         startAllManitoring.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
     }//GEN-LAST:event_startAllManitoringMouseReleased
 
-    private void configMenuLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_configMenuLabelMousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_configMenuLabelMousePressed
+    private void addToTableMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addToTableMouseEntered
+        controllingMenuButtonsClick.addToTableButtonMouseEntered(this);
+    }//GEN-LAST:event_addToTableMouseEntered
+
+    private void addToTableMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addToTableMouseExited
+        controllingMenuButtonsClick.addToTableButtonMouseExited(this);
+    }//GEN-LAST:event_addToTableMouseExited
+
+    private void configMenuLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_configMenuLabelMouseEntered
+        controllingMenuButtonsClick.configMenuButtonMouseEntered(this);
+    }//GEN-LAST:event_configMenuLabelMouseEntered
+
+    private void configMenuLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_configMenuLabelMouseExited
+        controllingMenuButtonsClick.configMenuButtonMouseExited(this);
+    }//GEN-LAST:event_configMenuLabelMouseExited
+
+    private void dashMenuLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashMenuLabelMouseEntered
+        controllingMenuButtonsClick.dashMenuButtonMouseEntered(this);
+    }//GEN-LAST:event_dashMenuLabelMouseEntered
+
+    private void dashMenuLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashMenuLabelMouseExited
+        controllingMenuButtonsClick.dashMenuButtonMouseExited(this);
+    }//GEN-LAST:event_dashMenuLabelMouseExited
+
+    private void smtpMenuLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_smtpMenuLabelMouseEntered
+        controllingMenuButtonsClick.emailMenuButtonMouseEntered(this);
+    }//GEN-LAST:event_smtpMenuLabelMouseEntered
+
+    private void smtpMenuLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_smtpMenuLabelMouseExited
+        controllingMenuButtonsClick.emailMenuButtonMouseExited(this);
+    }//GEN-LAST:event_smtpMenuLabelMouseExited
+
+    private void databaseMenuLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_databaseMenuLabelMouseEntered
+        controllingMenuButtonsClick.reportMenuButtonMouseEntered(this);
+    }//GEN-LAST:event_databaseMenuLabelMouseEntered
+
+    private void databaseMenuLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_databaseMenuLabelMouseExited
+        controllingMenuButtonsClick.reportMenuButtonMouseExited(this);
+    }//GEN-LAST:event_databaseMenuLabelMouseExited
+
+    private void removeFromTableMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeFromTableMouseEntered
+        controllingMenuButtonsClick.removeFromTableButtonMouseEntered(this);
+    }//GEN-LAST:event_removeFromTableMouseEntered
+
+    private void removeFromTableMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeFromTableMouseExited
+        controllingMenuButtonsClick.removeFromTableButtonMouseExited(this);
+    }//GEN-LAST:event_removeFromTableMouseExited
+
+    private void clearTableButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clearTableButtonMouseExited
+        controllingMenuButtonsClick.clearTableButtonMouseExited(this);
+    }//GEN-LAST:event_clearTableButtonMouseExited
+
+    private void clearTableButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clearTableButtonMouseEntered
+        controllingMenuButtonsClick.clearTableButtonMouseEntered(this);
+    }//GEN-LAST:event_clearTableButtonMouseEntered
 
     public void changeTableFontAndAlign() {
         DefaultTableCellRenderer render = new DefaultTableCellRenderer();
         MyRendererStatus myRendererStatus = new MyRendererStatus();
         MyRendererIP myRendererIP = new MyRendererIP();
-        
-        
+
         render.setHorizontalAlignment(JLabel.CENTER);
 
         tableOfHosts.getColumnModel().getColumn(0).setCellRenderer(myRendererIP);
@@ -959,7 +1016,7 @@ public class Gui extends javax.swing.JFrame {
     ControllingMenuButtonsClick controllingMenuButtonsClick;
     AddToTable addToTableClass;
     TableSortingAction tableSortingAction;
-    static int currentRowNumber = 0; 
+    static int currentRowNumber = 0;
 
     //IP Panel variables
     int fInt = 0;
@@ -984,10 +1041,10 @@ public class Gui extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel IpPanel;
-    private javax.swing.JLabel addToTable;
+    public javax.swing.JLabel addToTable;
     public javax.swing.JLabel bannerLabel;
     private javax.swing.JPanel buttonsPanel;
-    private javax.swing.JLabel clearTableButton;
+    public javax.swing.JLabel clearTableButton;
     public javax.swing.JLabel configMenuLabel;
     public javax.swing.JPanel configPanel;
     public javax.swing.JLabel dashMenuLabel;
@@ -1007,7 +1064,7 @@ public class Gui extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JPanel parentPanel;
-    private javax.swing.JLabel removeFromTable;
+    public javax.swing.JLabel removeFromTable;
     public javax.swing.JTextField secondOctet;
     public javax.swing.JLabel smtpMenuLabel;
     public javax.swing.JPanel smtpPanel;
