@@ -686,7 +686,11 @@ public class Gui extends javax.swing.JFrame {
         if (!(Character.isDigit(c))) {
             evt.consume();
         } else {
-            fStr += Character.toString(evt.getKeyChar());
+            if (fStr.length() > 2) {
+                secondOctet.requestFocus();
+            } else {
+                fStr += Character.toString(evt.getKeyChar());
+            }
             fInt = Integer.parseInt(fStr);
         }
 
@@ -734,7 +738,11 @@ public class Gui extends javax.swing.JFrame {
         if (!(Character.isDigit(c))) {
             evt.consume();
         } else {
-            sStr += Character.toString(evt.getKeyChar());
+            if (sStr.length() > 2) {
+                thirdOctet.requestFocus();
+            } else {
+                sStr += Character.toString(evt.getKeyChar());
+            }
             sInt = Integer.parseInt(sStr);
         }
 
@@ -782,7 +790,11 @@ public class Gui extends javax.swing.JFrame {
         if (!(Character.isDigit(c))) {
             evt.consume();
         } else {
-            tStr += Character.toString(evt.getKeyChar());
+            if (tStr.length() > 2) {
+                fourthOctet.requestFocus();
+            } else {
+                tStr += Character.toString(evt.getKeyChar());
+            }
             tInt = Integer.parseInt(tStr);
         }
 
@@ -825,7 +837,11 @@ public class Gui extends javax.swing.JFrame {
         if (!(Character.isDigit(c))) {
             evt.consume();
         } else {
-            fourStr += Character.toString(evt.getKeyChar());
+            if (fourStr.length() > 2) {
+                fourthOctet.requestFocus();
+            } else {
+                fourStr += Character.toString(evt.getKeyChar());
+            }
             fourInt = Integer.parseInt(fourStr);
         }
 
@@ -959,16 +975,20 @@ public class Gui extends javax.swing.JFrame {
         DefaultTableCellRenderer render = new DefaultTableCellRenderer();
         MyRendererStatus myRendererStatus = new MyRendererStatus();
         MyRendererIP myRendererIP = new MyRendererIP();
+        MyRendererHostname myRendererHostname = new MyRendererHostname();
+        MyRendererDescription myRendererDescription = new MyRendererDescription();
 
         render.setHorizontalAlignment(JLabel.CENTER);
 
-        tableOfHosts.getColumnModel().getColumn(0).setCellRenderer(myRendererIP);
+        tableOfHosts.getColumnModel().getColumn(0).setCellRenderer(render);
         tableOfHosts.getColumnModel().getColumn(1).setCellRenderer(render);
         tableOfHosts.getColumnModel().getColumn(2).setCellRenderer(render);
         tableOfHosts.getColumnModel().getColumn(3).setCellRenderer(myRendererStatus);
 
         tableOfHosts.getTableHeader().setFont(new Font("Consolas", Font.PLAIN, 15));
         tableOfHosts.setFont(new Font("Consolas", Font.PLAIN, 14));
+        tableOfHosts.setBackground(new Color(224, 223, 222));
+
     }
 
     /**

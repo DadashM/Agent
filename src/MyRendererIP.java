@@ -10,10 +10,15 @@ public class MyRendererIP extends DefaultTableCellRenderer {
 
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 
-
+        System.out.println("MyRender start --------");
+        System.out.println("row: " + row);
+        System.out.println("Gui.currentRowNumber: " + Gui.currentRowNumber);
         if (row == Gui.currentRowNumber) {
+            System.out.println("inside if");
+            System.out.println("Gui.ip: " + Gui.ip);
             setText(Gui.ip);
         }
+        System.out.println("MyRender end --------");
         setBackground(new Color(224, 223, 222));
         setHorizontalAlignment(JLabel.CENTER);
         setFont(new Font("Consolas", Font.PLAIN, 14));
@@ -25,7 +30,7 @@ public class MyRendererIP extends DefaultTableCellRenderer {
 class MyRendererHostname extends DefaultTableCellRenderer {
 
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-
+        setBackground(new Color(224, 223, 222));
         setHorizontalAlignment(JLabel.CENTER);
         setFont(new Font("Consolas", Font.PLAIN, 14));
         return this;
@@ -36,7 +41,7 @@ class MyRendererHostname extends DefaultTableCellRenderer {
 class MyRendererDescription extends DefaultTableCellRenderer {
 
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-
+        setBackground(new Color(224, 223, 222));
         setHorizontalAlignment(JLabel.CENTER);
         setFont(new Font("Consolas", Font.PLAIN, 14));
         return this;
